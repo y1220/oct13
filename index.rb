@@ -1,4 +1,5 @@
 require "./player"
+#require "./coordinate"
 
 # method
 def insert_name
@@ -8,13 +9,12 @@ def insert_name
 	return name
 end
 
-#def read_number(board)
 def read_number
 	print "number: "
 	num= gets.chomp.to_i
 	while !num.between?(1, 9) || $board.include?(num)
 		puts "choose the number between 1-9 and not used number!"
-		print "taken: "
+		puts "taken: "
  		puts $board
 		print "number: "
  		num= gets.chomp.to_i
@@ -27,7 +27,7 @@ def check_duplicate
 end
 
 
-#require "./coordinate"
+
 
 # read two players
 name= insert_name
@@ -77,38 +77,39 @@ puts "please choose the number as above"
 
 
 # read the coordinates
+# $ means global variable
 $board= []
-puts "turn: #{player1.name}"
-#num1= read_number(board)
-num1= read_number
-$board.push(num1)
-puts "turn: #{player2.name}"
-#num2= read_number(board)
-num2= read_number
-$board.push(num2)
+i=0
+while i!=5 
+	puts "turn: #{player1.name}"
+	#num1= read_number(board)
+	num1= read_number
+	$board.push(num1)
+	puts "turn: #{player2.name}"
+	#num2= read_number(board)
+	num2= read_number
+	$board.push(num2)
 
 
 
-puts"=================check the insertion=========================="
-puts player1.name + ": (" + num1.to_s + ")"
-puts player2.name + ": (" + num2.to_s + ")"
-puts "============================================================="
+	puts"=================check the insertion=========================="
+	puts player1.name + ": (" + num1.to_s + ")"
+	puts player2.name + ": (" + num2.to_s + ")"
+	puts "============================================================="
 
 
-player1.chosen << num1.to_i
-player2.chosen << num2.to_i
+	player1.chosen << num1.to_i
+	player2.chosen << num2.to_i
+	i += 1
+end
+
 
 puts"=================check the registration======================="
 puts player1.name + ": (" + player1.chosen.to_s + ")"
 puts player2.name + ": (" + player2.chosen.to_s + ")"
+puts "taken: "
+puts $board
 puts "============================================================="
-
-
-p player1.chosen
-p player2.chosen
-
-
-
 
 # check whether player wins or not
 

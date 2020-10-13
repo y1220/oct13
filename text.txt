@@ -17,3 +17,57 @@ puts ""
 print "y: "
 y= gets.chomp.to_i
 puts ""
+
+
+def print
+		$i= 0
+		$j= 0
+		num= 3
+		while $i < num
+			while $j < num
+				if $i%2==0 && $j%2 ==0#r:even ,c:even
+					if  #exist in chosen array
+					  # print O or X
+					else
+					  print " "	
+					end
+				elsif $i%2==0 && $j%2 !=0#r:even, c:odd
+					print "|"
+			    elsif $i%2!=0 && $j%2 ==0#r:odd, c:even
+			    	print "-"
+
+			    else #r:odd, c:odd
+					print " "	
+				end
+				
+
+				$j +=1
+			end
+			$i +=1
+		end
+	end
+
+
+	puts " (0,0)|(0,1)|(0,2)"
+puts "   -     -     -  "
+puts " (1,0)|(1,1)|(1,2)"
+puts "   -     -     -  "
+puts " (2,0)|(2,1)|(2,2)"
+puts "please insert the coordinate (x,y) as above"
+
+
+
+puts "tern of #{player1.name}"
+print "x: "
+x1= gets.chomp.to_i
+print "y: "
+
+
+
+y1= gets.chomp.to_i
+
+puts "tern of #{player2.name}"
+print "x: "
+x2= gets.chomp.to_i
+print "y: "
+y2= gets.chomp.to_i
