@@ -28,12 +28,44 @@ end
 # check whether player wins or not
 def check_winner(chosen)
 	# 8 patterns to win
-	if chosen&[1,2,3]==[1,2,3]||chosen&[4,5,6]==[4,5,6]||chosen&[7,8,9]==[7,8,9]||chosen&[1,4,7]==[1,4,7]||chosen&[2,5,8]==[2,5,8]||chosen&[3,6,9]==[3,6,9]||chosen&[1,5,9]==[1,5,9]||chosen&[3,5,7]==[3,5,7]
+	if chosen & [1,2,3] == [1,2,3] || chosen & [4,5,6] == [4,5,6] || chosen & [7,8,9] == [7,8,9] || 
+		chosen & [1,4,7] == [1,4,7] || chosen & [2,5,8] == [2,5,8] || chosen & [3,6,9] == [3,6,9] || 
+		chosen & [1,5,9] == [1,5,9] || chosen & [3,5,7] == [3,5,7]
 		return true
 	end
 	return false
 end
 
+# print the current result
+def print_result(chosen1, chosen2, x_o1, x_o2)
+	i=0
+	while i <  5
+		j=0
+		while j < 5
+				if i%2==0 && j%2 ==0#r:even ,c:even
+					if  chosen1.include?(i/2*3+j/2+1)#exist in chosen array1
+						print x_o1
+					  # print O or X
+					elsif chosen2.include?(i/2*3+j/2+1) #exist in chosen array1
+						print x_o2
+					else
+					  print " "	
+					end
+				elsif i%2==0 && j%2 !=0#r:even, c:odd
+					print "|"
+			    elsif i%2!=0 && j%2 ==0#r:odd, c:even
+			    	print "-"
+
+			    else #r:odd, c:odd
+					print " "	
+				end
+			j +=1
+		end
+		i +=1
+		puts ""
+	end
+
+end
 
 
 
@@ -96,6 +128,7 @@ while i!=5
 	player1.chosen << num1.to_i
 	if check_winner(player1.chosen)
 		puts player1.name + " won!!!!"
+		print_result(player1.chosen,player2.chosen,player1.x_o,player2.x_o)
  		break
  	end
 	if i!=4
@@ -106,6 +139,7 @@ while i!=5
 		player2.chosen << num2.to_i
 		if check_winner(player2.chosen)
 			puts player2.name + " won!!!!"
+			print_result(player1.chosen,player2.chosen,player1.x_o,player2.x_o)
 	 		break
  		end
 	end
@@ -130,7 +164,3 @@ puts "============================================================="
 puts ""
 
 
-
-
-
-# print the current result
