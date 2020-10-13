@@ -12,7 +12,7 @@ class Player
 		@name= name
 		@x_o= x_o
 		@chosen= Array.new
-		#@reach= reach
+		@reach= Array.new
 	end
 
 

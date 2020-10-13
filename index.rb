@@ -9,21 +9,29 @@ def insert_name
 	return name
 end
 
-def read_number
+#def read_number
+def read_number(chosen1, chosen2)
 	print "number: "
 	num= gets.chomp.to_i
-	while !num.between?(1, 9) || $board.include?(num)
+	#while !num.between?(1, 9) || $board.include?(num)
+	while !num.between?(1, 9) || chosen1.include?(num) || chosen2.include?(num) 
 		puts "choose the number between 1-9 and not used number!"
 		puts "taken: "
- 		puts $board
+		puts chosen1 + chosen2
+ 		#puts $board
 		print "number: "
  		num= gets.chomp.to_i
  	end 
 	return num
 end
 
-def check_duplicate
-
+# check whether player wins or not
+def check_winner(chosen)
+	# 8 patterns to win
+	if chosen&[1,2,3]==[1,2,3]||chosen&[4,5,6]==[4,5,6]||chosen&[7,8,9]==[7,8,9]||chosen&[1,4,7]==[1,4,7]||chosen&[2,5,8]==[2,5,8]||chosen&[3,6,9]==[3,6,9]||chosen&[1,5,9]==[1,5,9]||chosen&[3,5,7]==[3,5,7]
+		return true
+	end
+	return false
 end
 
 
@@ -78,28 +86,35 @@ puts "please choose the number as above"
 
 # read the coordinates
 # $ means global variable
-$board= []
+#$board= []
 i=0
 while i!=5 
 	puts "turn: #{player1.name}"
-	#num1= read_number(board)
-	num1= read_number
-	$board.push(num1)
-	puts "turn: #{player2.name}"
-	#num2= read_number(board)
-	num2= read_number
-	$board.push(num2)
-
-
+	num1= read_number(player1.chosen, player2.chosen)
+	#$board.push(num1)
+	# store the coordinates
+	player1.chosen << num1.to_i
+	if check_winner(player1.chosen)
+		puts player1.name + " won!!!!"
+ 		break
+ 	end
+	if i!=4
+		puts "turn: #{player2.name}"
+		num2= read_number(player1.chosen, player2.chosen)
+		#$board.push(num2)
+		# store the coordinates
+		player2.chosen << num2.to_i
+		if check_winner(player2.chosen)
+			puts player2.name + " won!!!!"
+	 		break
+ 		end
+	end
 
 	puts"=================check the insertion=========================="
 	puts player1.name + ": (" + num1.to_s + ")"
 	puts player2.name + ": (" + num2.to_s + ")"
-	puts "============================================================="
-
-
-	player1.chosen << num1.to_i
-	player2.chosen << num2.to_i
+	puts "============================================================="	
+	
 	i += 1
 end
 
@@ -108,11 +123,14 @@ puts"=================check the registration======================="
 puts player1.name + ": (" + player1.chosen.to_s + ")"
 puts player2.name + ": (" + player2.chosen.to_s + ")"
 puts "taken: "
-puts $board
+puts player1.chosen.to_s + player2.chosen.to_s
+#p $board
 puts "============================================================="
 
-# check whether player wins or not
+puts ""
 
-# store the coordinates
+
+
+
 
 # print the current result
