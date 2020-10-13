@@ -1,3 +1,6 @@
+class WrongXorO < StandardError
+end
+
 class Player
 
 	#attr_accessor :name, :OorX, :chosen, :reach
@@ -8,9 +11,10 @@ class Player
 	def initialize(name, x_o)
 		@name= name
 		@x_o= x_o
-		#@chosen= chosen
+		@chosen= Array.new
 		#@reach= reach
 	end
+
 
     # check if the selected coordinates are inside of reach 
 	def check_bingo
@@ -18,8 +22,8 @@ class Player
 	end
 
     # create the array of coordinates (x, y)
-	def store_in_array
-		
+	def store_in_array(coordinate)
+		chosen.push(coordinate)
 	end
 
 	

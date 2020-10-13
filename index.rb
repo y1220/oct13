@@ -1,10 +1,36 @@
 require "./player"
+
+# method
+def insert_name
+	puts "insert name"		
+	print "name: "
+	name= gets.chomp
+	return name
+end
+
+#def read_number(board)
+def read_number
+	print "number: "
+	num= gets.chomp.to_i
+	while !num.between?(1, 9) || $board.include?(num)
+		puts "choose the number between 1-9 and not used number!"
+		print "taken: "
+ 		puts $board
+		print "number: "
+ 		num= gets.chomp.to_i
+ 	end 
+	return num
+end
+
+def check_duplicate
+
+end
+
+
 #require "./coordinate"
 
 # read two players
-puts "player1: insert name and x or o"
-print "player1-name: "
-name= gets.chomp
+name= insert_name
 print "player1- x or o: "
 x_o1= gets.chomp
 while x_o1!='x' && x_o1!='o'
@@ -15,12 +41,9 @@ end
 player1 = Player.new(name, x_o1)
 
 
-
-puts "player2: insert name and x or o"
-print "player2-name: "
-name= gets.chomp
+name= insert_name
 print "player2- x or o: "
-x_o2= gets.chomp
+x_o2= gets.chomp		
 if x_o1=='x'
 	while x_o2!='o' 
 		puts "please insert o since x is taken by another player"
@@ -41,32 +64,48 @@ puts"=================check the insertion=========================="
 puts "player1: "+ player1.name+ " "+ player1.x_o
 puts "player2: "+ player2.name+ " "+ player2.x_o
 
+puts "============================================================="
+puts ""
+
 # explanation of the way to choose the position
-puts " (0,0)|(0,1)|(0,2)"
-puts "   -     -     -  "
-puts " (1,0)|(1,1)|(1,2)"
-puts "   -     -     -  "
-puts " (2,0)|(2,1)|(2,2)"
-puts "please insert the coordinate (x,y) as above"
+puts " 1|2|3"
+puts " - - -"
+puts " 4|5|6"
+puts " - - -"
+puts " 7|8|9"
+puts "please choose the number as above"
 
 
 # read the coordinates
-puts "tern of #{player1.name}"
-print "x: "
-x1= gets.chomp.to_i
-print "y: "
-y1= gets.chomp.to_i
+$board= []
+puts "turn: #{player1.name}"
+#num1= read_number(board)
+num1= read_number
+$board.push(num1)
+puts "turn: #{player2.name}"
+#num2= read_number(board)
+num2= read_number
+$board.push(num2)
 
-puts "tern of #{player2.name}"
-print "x: "
-x2= gets.chomp.to_i
-print "y: "
-y2= gets.chomp.to_i
+
 
 puts"=================check the insertion=========================="
-puts player1.name + ": ("+ x1.to_s + ", " + y1.to_s + ")"
-puts player2.name + ": ("+ x2.to_s + ", " + y2.to_s + ")"
+puts player1.name + ": (" + num1.to_s + ")"
+puts player2.name + ": (" + num2.to_s + ")"
+puts "============================================================="
 
+
+player1.chosen << num1.to_i
+player2.chosen << num2.to_i
+
+puts"=================check the registration======================="
+puts player1.name + ": (" + player1.chosen.to_s + ")"
+puts player2.name + ": (" + player2.chosen.to_s + ")"
+puts "============================================================="
+
+
+p player1.chosen
+p player2.chosen
 
 
 
