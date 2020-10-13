@@ -1,0 +1,19 @@
+
+
+
+player2 = Player.new()
+puts "player2: insert name and O or X"
+print "player2-name: "
+player2.name= gets.chomp
+puts ""
+print "player2- X or O: "
+player2.OorX= gets.chomp
+puts ""
+
+
+print "x: "
+x= gets.chomp.to_i
+puts ""
+print "y: "
+y= gets.chomp.to_i
+puts ""

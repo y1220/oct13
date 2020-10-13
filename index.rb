@@ -1,53 +1,26 @@
 require "./player"
-require "./coordinate"
+#require "./coordinate"
 
-class 
+# read two players
+puts "player1: insert name and x or o"
+print "player1-name: "
+name= gets.chomp
+puts ""
+print "player1- x or o: "
+x_o= gets.chomp
+puts ""
+player1 = Player.new(name, x_o)
 
-	attr_accessor :name, :OorX, :chosen, 
+puts"check the insertion"
+puts "name: "+ player1.name
+puts "x or o: "+ player1.x_o
 
 
 
-	def initialize
-		@name= name
-		@OorX= OorX
-		@chosen= chosen
-		@reach= reach
-	end
+# read the coordinates
 
+# check whether player wins or not
 
-	def check_bingo
-		
-	end
+# store the coordinates
 
-	def store_in_array
-		
-	end
-
-	def print
-		$i= 0
-		$j= 0
-		num= 3
-		while $i < num
-			while $j < num
-				if $i%2==0 && $j%2 ==0#r:even ,c:even
-					if  #exist in chosen array
-					  # print O or X
-					else
-					  print " "	
-					end
-				elsif $i%2==0 && $j%2 !=0#r:even, c:odd
-					print "|"
-			    elsif $i%2!=0 && $j%2 ==0#r:odd, c:even
-			    	print "-"
-
-			    else #r:odd, c:odd
-					print " "	
-				end
-				
-
-				$j +=1
-			end
-			$i +=1
-		end
-	end
-end
+# print the current result
